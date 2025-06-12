@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEDERDATA Bot API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEDERDATA Bot API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #0088cc;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEDERDATA Bot API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #0088cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #006699;
+        }
+        input, textarea, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactúa con la API de LEDERDATA</h1>
+        <form id="apiForm" onsubmit="fetchApiData(); return false;">
+            <input id="dniInput" type="text" placeholder="Introduce DNI" required />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEDERDATA Bot API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: white;
+            background-color: #0088cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #006699;
+        }
+        input, textarea, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactúa con la API de LEDERDATA</h1>
+        <form id="apiForm1" onsubmit="fetchReniecData(); return false;">
+            <h2>Consulta RENIEC</h2>
+            <input id="dniInput" type="text" placeholder="Introduce DNI" required />
+            <select id="sourceInput" required>
+                <option value="database">Base de datos</option>
+                <option value="online">En línea</option>
+            </select>
+            <textarea id="apiResponse1" rows="5" placeholder="Respuesta de la API"></textarea>
+            <button type="submit" class="button">Enviar Solicitud RENIEC</button>
+        </form>
+        <hr>
+        <form id="apiForm2" onsubmit="fetchTelefoniaData(); return false;">
+            <h2>Consulta Telefonía</h2>
+            <input id="numeroInput" type="text" placeholder="Introduce Número" required />
+            <textarea id="apiResponse2" rows="5" placeholder="Respuesta de la API"></textarea>
+            <button type="submit" class="button">Enviar Solicitud Telefonía</button>
+        </form>
+    </div>
+    <script>
+        const apiToken = "u9r18mfck7t_O8sR5Lgvidg7oU3IJG_QhgX4SMSQkvn227_hv34nmGA27G86j3k1";
+        const reniecUrl = "https://leder-data-api.ngrok.dev/v1.7/persona/reniec";
+        const telefoniaUrl = "https://leder-data-api.ngrok.dev/v1.7/telefonia/numero";
+
+        async function fetchReniecData() {
+            const dni = document.getElementById('dniInput').value;
+            const source = document.getElementById('sourceInput').value;
+
+            try {
+                const response = await fetch(reniecUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        dni: dni.trim(),
+                        source: source,
+                        token: apiToken
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                document.getElementById('apiResponse1').value = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('apiResponse1').value = `Error: ${error.message}`;
+            }
+        }
+
+        async function fetchTelefoniaData() {
+            const numero = document.getElementById('numeroInput').value;
+
+            try {
+                const response = await fetch(telefoniaUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        numero: numero.trim(),
+                        token: apiToken
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                document.getElementById('apiResponse2').value = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('apiResponse2').value = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
+
